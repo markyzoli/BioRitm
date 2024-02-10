@@ -1,0 +1,20 @@
+1 adag
+1 db
+1 karéj
+1 pár
+1 szelet
+10 dkg
+2 db
+2 karéj
+2 szelet
+3 db
+4 db
+4 szelet
+5 dkg
+6 dkg
+Dupla
+egy tányér
+Kis adag
+Szimpla
+Fél adag
+Dupla adag
