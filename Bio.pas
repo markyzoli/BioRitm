@@ -1,7 +1,6 @@
-{***********************************************}
-{ This project was created with the aim of      }
-{ to record daily health events                 }
-{***********************************************}
+{*******************************************************}
+{ This project was created to record daily health events}
+{*******************************************************}
 unit Bio;
 
 interface
@@ -212,13 +211,14 @@ var
     S: string;
     i, x: integer;
 begin
+    // Basic situation
     if E_Mertek.Text = '' then
     begin
         E_Mertek.Text := E_Mertek.Hint;
         E_Mertek.SelStart := 0;
         E_Mertek.SelLength := Length(E_Mertek.Text);
     end;
-
+    // Helping input to avoid distorted repetitions
     S := AnsiUpperCase(E_Mertek.Text);
     for i := 0 to Lista.Items.Count - 1 do
     begin
@@ -233,10 +233,10 @@ begin
         end;
     end;
 end;
-
+// Setting the current list based on the RadiGroup
 procedure TFrm.E_MertekEnter(Sender: TObject);
 begin
-    Mezo := False;
+    Mezo := False;  // The List knows which field to send the selected content to
     if E_Mertek.Text = E_Mertek.Hint then
     begin
         E_Mertek.Text := '';
@@ -251,7 +251,7 @@ begin
             Lista.Items.Assign(LAllm);
     end;
 end;
-
+// Basic situation
 procedure TFrm.E_MertekExit(Sender: TObject);
 begin
     if E_Mertek.Text = '' then
@@ -263,12 +263,11 @@ end;
 
 procedure TFrm.FormActivate(Sender: TObject);
 begin
-    RadioGroup1Click(RadioGroup1);
+    RadioGroup1Click(RadioGroup1); // Basic situation
 end;
 
 procedure TFrm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-    { TODO : Szövegek mentése }
     LBev.SaveToFile('bevitel.txt');
     LBevm.SaveToFile('bevitelm.txt');
     LKi.SaveToFile('kiadas.txt');
@@ -308,8 +307,7 @@ begin
     DataList.RowCount := DataList.RowCount + 1;
     MezokClear;
 end;
-// 2024. 02. 09. 21:17:44
-
+// Extracts the date from the DateTime data
 function TFrm.GetDatum(Sor: integer): string;
 var
     S: string;
@@ -416,7 +414,7 @@ begin
         DataList.DefaultDrawing := True;
     end;
 end;
-
+// Setting cell widths
 procedure TFrm.GridFrm;
 var
     i, j, W: integer;
@@ -445,7 +443,7 @@ begin
     end;
     DataList.ColWidths[0] := DataList.Canvas.TextWidth('Ai') * 20;
 end;
-
+// Sending data from the List and continuing input
 procedure TFrm.ListaClick(Sender: TObject);
 begin
     if Mezo then
@@ -457,7 +455,7 @@ begin
     else
         Button1.SetFocus;
 end;
-
+// Setting the input
 procedure TFrm.RadioGroup1Click(Sender: TObject); // Mezo:= False;
 begin
     case RadioGroup1.ItemIndex of
@@ -470,7 +468,7 @@ begin
     end;
     E_Megn.SetFocus;
 end;
-
+// Grid coloring for better readability
 procedure TFrm.TabbedNotebook1Click(Sender: TObject);
 begin
     Atszinez;
